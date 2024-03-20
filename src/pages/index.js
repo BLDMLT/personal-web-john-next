@@ -1,17 +1,21 @@
 import React from 'react';
 import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from '@/components/BasePage';
 import { Container, Row, Col } from 'reactstrap';
 import Image from 'next/image';
 import { ReactTyped } from "react-typed";
+import { useGetUser } from '@/actions/user';
 
 const roles = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"];
 
 const Index = () => {
-    return (
-      <BaseLayout className="cover">
+  const { data, error, loading } = useGetUser();
+  return (
+    <BaseLayout className="cover">
+      <BasePage>
         <div className="main-section">
           <div className="background-image">
-            <Image src="/images/background-index.png" alt='background' fill={true}/>
+            <Image src="/images/background-index.png" alt='background' fill={true} />
           </div>
           <Container>
             <Row>
@@ -19,8 +23,8 @@ const Index = () => {
                 <div className="hero-section">
                   <div className={`flipper`}>
                     <div className="back">
-                    <Image className="image" src="/images/section-1.png" alt='section' width={400} height={500}/>
-                    {/* <img className="image" src="/images/section-1.png" alt='section' /> */}
+                      <Image className="image" src="/images/section-1.png" alt='section' width={400} height={500} />
+                      {/* <img className="image" src="/images/section-1.png" alt='section' /> */}
                       <div className="hero-section-content">
                         <h2> Full Stack Web Developer </h2>
                         <div className="hero-section-content-intro">
@@ -61,8 +65,9 @@ const Index = () => {
             </Row>
           </Container>
         </div>
-      </BaseLayout>
-    )
+      </BasePage>
+    </BaseLayout>
+  )
 }
 
 export default Index;
